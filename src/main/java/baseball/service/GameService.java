@@ -2,6 +2,7 @@ package baseball.service;
 
 import baseball.model.GameResult;
 import baseball.utils.RandomNumbersGenerator;
+import baseball.validate.InputValidator;
 
 import java.util.List;
 
@@ -30,6 +31,9 @@ public class GameService {
      * 게임 처리
      */
     public GameResult process(String input) {
+        InputValidator.validateLength(input, 3);
+        InputValidator.validateNumbers(input);
+
         gameResult = new GameResult();
         for (int idx = 0; idx < input.length(); idx++) {
             int num = Integer.parseInt(input.substring(idx, idx + 1));
@@ -41,9 +45,7 @@ public class GameService {
 
     private void containsNumber(int num, int idx) {
         // 숫자 존재하지 않은 경우
-        if (!randomNumbers.contains(num)) {
-            return;
-        }
+        if (!randomNumbers.contains(num)) return;
 
         // 숫자와 위치 일치
         if (randomNumbers.indexOf(num) == idx) {
@@ -61,10 +63,8 @@ public class GameService {
      * 재시작 확인
      */
     public boolean isReplay(String input) {
-
-        if ("2".equals(input)) {
-            return false;
-        }
+        InputValidator.validateLength(input, 1);
+        InputValidator.validateContainString(input, "1", "2");
 
         if ("1".equals(input)) {
             init();
