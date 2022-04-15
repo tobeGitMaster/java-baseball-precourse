@@ -19,8 +19,6 @@ public class RandomNumbersGenerator {
             }
         }
 
-        System.out.println(randomNumbers);
-
         return randomNumbers;
     }
 
