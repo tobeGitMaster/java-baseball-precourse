@@ -5,7 +5,7 @@ import baseball.service.GameService;
 
 public class GameController {
 
-    private final GameService gameService;
+    private GameService gameService;
 
     public GameController() {
         gameService = new GameService();
